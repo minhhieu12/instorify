@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "340752364186",
+    "firebase_url": "https://fir-4c5a7-default-rtdb.firebaseio.com",
+    "project_id": "fir-4c5a7",
+    "storage_bucket": "fir-4c5a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340752364186:android:0fb5b1d2a3b102272de523",
+        "android_client_info": {
+          "package_name": "com.instorify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340752364186-kqjd68n4r7a3o3t6g1rcjnt6vo7fjusb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsGaB1GDYgBtg9ohFZgLZMOxBy0qkCJHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340752364186-kqjd68n4r7a3o3t6g1rcjnt6vo7fjusb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
