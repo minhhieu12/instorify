@@ -31,7 +31,7 @@ export function fetchUserPosts(){
                 const data = doc.data();
                 const id = doc.id;
                 return{id, ...data}
-            })
+            }) 
             console.log(posts)
             dispatch({type: USER_POSTS_STATE_CHANGE, posts})
         })
