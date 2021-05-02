@@ -1,14 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text, Image, FlatList, Button} from 'react-native';
+import {StyleSheet, View, Text, Image, FlatList, Button, MaskedViewComponent} from 'react-native';
+import {IconButton} from 'react-native-paper'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import Moment from 'moment'
 
 import {connect} from 'react-redux';
 
 function Feed(props) {
   const [userPosts, setPosts] = useState([]);
   const [isLoading, setLoading] = useState(false);
-    //const [posts, setPosts] = useState([]);
+    //const [posts, setPosts] = useState([]); 
 
   useEffect(() => {
     let posts = [];
@@ -55,17 +58,27 @@ function Feed(props) {
           data={userPosts}
           renderItem={({item}) => (
             <View style={styles.containerImage}>
-              <Text style={{marginLeft: 5}}>{item.user.name}</Text>
-              <Image style={styles.image} source={{uri: item.downloadURL}} />
-              <Text
-                onPress={() =>
-                  props.navigation.navigate('Comment', {
-                    postId: item.id,
-                    uid: item.user.uid,
-                  })
-                }>
-                View Comments... 
-              </Text>
+                <View style={{flex: 1, flexDirection: 'row', marginLeft: 10}}>
+                    <MaterialCommunityIcons name="account-circle-outline" size={26}/>
+                    <Text style={{marginLeft: 5}}>{item.user.name}</Text>
+                </View> 
+                <Image style={styles.image} source={{uri: item.downloadURL}} />
+                <Text style={{marginLeft: 10}}>{item.caption}</Text>
+                <Text style={{marginLeft: 10, color: 'gray'}}>{Moment(item.creation).format('DD-MM-yyyy')}</Text>
+                <View style={{flex: 1, flexDirection: 'row'}}>
+                    <IconButton
+                        icon="heart"
+                        color="red"
+                    />
+                    <IconButton
+                        icon="comment"
+                        onPress={() =>
+                            props.navigation.navigate('Comment', {
+                                postId: item.id,
+                                uid: item.user.uid,
+                            })}
+                    />
+                </View>
             </View>
           )}
         />
@@ -89,7 +102,8 @@ const styles = StyleSheet.create({
     flex: 1,
     aspectRatio: 1 / 1,
     marginHorizontal: 10,
-    marginVertical: 5
+    marginVertical: 5,
+    borderRadius: 10
   },
   containerImage: {
     flex: 1 / 1, 

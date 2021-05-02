@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Text, View, TextInput, Button, Alert} from 'react-native'
+import { Text, View, TextInput, Button, Alert, Image, TouchableOpacity} from 'react-native'
 import auth, {firebase} from '@react-native-firebase/auth'
+
 
 export class Login extends Component {
     constructor(props){
@@ -29,19 +30,52 @@ export class Login extends Component {
     render() {
         return (
             <View>
+                <Image
+                    style={{width: 100, height: 100, alignSelf: 'center', marginTop: 90}}
+                    source={require('../img/logo.png')}
+                />
+                <Text style={{alignSelf: 'center', fontSize: 30, fontWeight: 'bold'}}>ĐĂNG NHẬP</Text>
                 <TextInput
+                    style={{
+                        marginHorizontal: 20,
+                        marginTop: 20,
+                        borderWidth: 1,
+                        borderRadius: 10,
+                        paddingHorizontal: 10,
+                        borderColor: 'grey'
+                    }}
                     placeholder = "Email"
                     onChangeText={(email) => this.setState({email})}
                 />
                 <TextInput
-                    placeholder = "MậT khẩu"
+                    style={{
+                        marginHorizontal: 20,
+                        marginTop: 10,
+                        borderWidth: 1,
+                        borderRadius: 10,
+                        paddingHorizontal: 10,
+                        borderColor: 'grey',
+                        marginBottom: 10
+                    }}
+                    placeholder = "Mật khẩu"
                     secureTextEntry = {true}
                     onChangeText={(password) => this.setState({password})}
                 />
-                <Button
+                <TouchableOpacity 
                     onPress = {() => this.onSignIn()}
-                    title = "Đăng Nhập"
-                />
+                    style={{
+                        marginTop: 10, 
+                        borderWidth: 1, 
+                        borderColor: '#F83F17',
+                        alignSelf: 'center', 
+                        borderRadius: 10,
+                        paddingHorizontal: 140,
+                        paddingVertical: 10,
+                        backgroundColor: '#F83F17'
+                    }}
+                >
+                    <Text style={{color: 'white'}}>ĐĂNG NHẬP</Text>
+                </TouchableOpacity>
             </View>
         )
     }

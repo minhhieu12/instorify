@@ -5,6 +5,8 @@ import { AppRegistry, StyleSheet, Text, TouchableOpacity, View, Image, ImageBack
 import { RNCamera } from 'react-native-camera';
 import ImagePicker from 'react-native-image-picker'
 
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 export default function Add({ navigation }) {
   const [camera, setCamera] = useState(null);
   const [image, setImage] = useState(null);
@@ -56,13 +58,13 @@ export default function Add({ navigation }) {
       
       <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
         <TouchableOpacity onPress={takePicture.bind(this)} style={styles.capture}>
-          <Text style={{ fontSize: 14 }}> SNAP </Text>
+          <MaterialCommunityIcons name='camera' size={26}></MaterialCommunityIcons>
         </TouchableOpacity>
         <TouchableOpacity onPress={pickImage.bind(this)} style={styles.capture}>
-          <Text style={{ fontSize: 14 }}> PICK IMAGE </Text>
+          <MaterialCommunityIcons name='image' size={26}></MaterialCommunityIcons>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Save', {image})} style={styles.capture}>
-          <Text style={{ fontSize: 14 }}> SAVE </Text>
+          <MaterialCommunityIcons name='content-save' size={26}></MaterialCommunityIcons>
         </TouchableOpacity>
       </View>
       {image && <Image source={{uri: image}} style={{flex: 0.5}}/>}

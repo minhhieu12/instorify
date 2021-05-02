@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {View, Text, FlatList, Button, TextInput} from 'react-native' 
+import {View, Text, FlatList, Button, TextInput, TouchableOpacity} from 'react-native' 
 
 import firestore from '@react-native-firebase/firestore'
 import auth from '@react-native-firebase/auth'
@@ -87,14 +87,26 @@ function Comment(props) {
                 )}
             />
             <View>
-                <TextInput
-                    placeholder='comment...'
-                    onChangeText={(text) => setText(text)}
-                />
-                <Button
+            <TextInput
+                style={{marginHorizontal: 10}}
+                placeholder="Bình luận..."
+                onChangeText={(text) => setText(text)}
+            />
+            <TouchableOpacity 
                     onPress={() => onCommentSend()}
-                    title="Send"
-                />
+                    style={{
+                        marginTop: 10, 
+                        borderWidth: 1, 
+                        borderColor: '#F83F17',
+                        alignSelf: 'center', 
+                        borderRadius: 10,
+                        paddingHorizontal: 140,
+                        paddingVertical: 10,
+                        backgroundColor: '#F83F17'
+                    }}
+                >
+                    <Text style={{color: 'white'}}>Gửi</Text>
+            </TouchableOpacity>
             </View>
         </View>
     )

@@ -4,6 +4,8 @@ import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native'
 import firestore from '@react-native-firebase/firestore'
 import { green100 } from 'react-native-paper/lib/typescript/styles/colors'
 
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 export default function Search(props) {
     const [users, setUsers] = useState([])
 
@@ -24,10 +26,14 @@ export default function Search(props) {
 
     return (
         <View>
-            <TextInput
-                placeholder="Bạn muốn tìm ai?"
-                onChangeText={(search) => fetchUsers(search)}
-            />
+            <View style={{marginTop: 5 ,flexDirection: 'row', borderWidth: 1, borderRadius: 10, marginHorizontal: 10, borderColor: 'lightgray'}}>
+                <MaterialCommunityIcons name="magnify" size={26} style={{marginTop: 10, marginLeft: 5}}/>
+                <TextInput
+                    placeholder="Bạn muốn tìm ai?"
+                    onChangeText={(search) => fetchUsers(search)}
+                />
+            </View>
+            
 
             <FlatList
                 numColumns={1}
@@ -38,7 +44,17 @@ export default function Search(props) {
                     <TouchableOpacity
                         onPress={() => props.navigation.navigate("Profile", {uid: item.id})}
                     >
-                        <Text style={{marginTop: 10, backgroundColor: "#fff"}}>{item.name}</Text>
+                        <Text 
+                            style={{
+                                marginTop: 10, 
+                                borderWidth: 1, 
+                                borderRadius: 10,
+                                borderColor: "#F83F17",
+                                paddingHorizontal: 10,
+                                paddingVertical: 10,
+                                backgroundColor: '#F83F17',
+                                color: 'white'
+                            }}>{item.name}</Text>
                     </TouchableOpacity>
                 )}
             />

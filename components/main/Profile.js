@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, View, Text, Image, FlatList, Button } from 'react-native'
+import { StyleSheet, View, Text, Image, FlatList, Button, TouchableOpacity } from 'react-native'
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {connect} from 'react-redux'
 
@@ -87,28 +88,76 @@ function Profile(props) {
     return (
         <View style={styles.container}>
             <View style={styles.containerInfo}>
-                <Text>{user.name}</Text>
-                <Text>{user.email}</Text>
+                <MaterialCommunityIcons name="account-circle" size={80} style={{alignSelf: 'center'}}/>
+                <Text style={{alignSelf: 'center', fontSize: 20}}>{user.name}</Text>
+                <Text style={{alignSelf: 'center', marginBottom: 10, color: 'gray'}}>{user.email}</Text>
 
                 {props.route.params.uid !== auth().currentUser.uid ? (
                     <View>
                         {following ? (
-                            <Button
-                                title="Following"
+                            <TouchableOpacity 
                                 onPress={() => onUnfollow()}
-                            />
+                                style={{
+                                    marginTop: 10, 
+                                    borderWidth: 1, 
+                                    borderColor: '#F83F17',
+                                    alignSelf: 'center', 
+                                    borderRadius: 10,
+                                    width: 340,
+                                    paddingVertical: 10,
+                                    backgroundColor: '#F83F17'
+                                }}
+                            >
+                                <Text style={{color: 'white', alignSelf: 'center'}}>Đã theo dõi</Text>
+                            </TouchableOpacity>
+                            // <Button
+                            //     title="Following"
+                            //     onPress={() => onUnfollow()}
+                            // />
                         ) : 
                         (
-                            <Button
-                                title="Follow"
+                            <TouchableOpacity 
                                 onPress={() => onFollow()}
-                            />
+                                style={{
+                                    marginTop: 10, 
+                                    borderWidth: 1, 
+                                    borderColor: '#F83F17',
+                                    alignSelf: 'center', 
+                                    borderRadius: 10,
+                                    width: 340,
+                                    paddingVertical: 10,
+                                    backgroundColor: '#F83F17'
+                                }}
+                            >
+                                <Text style={{color: 'white', alignSelf: 'center'}}>Theo dõi</Text>
+                            </TouchableOpacity>
+                            // <Button
+                            //     title="Follow"
+                            //     onPress={() => onFollow()}
+                            // />
                         )}
                     </View>
-                ) : <Button
-                        title="Logout"
+                ) : 
+                    <TouchableOpacity 
                         onPress={() => onLogout()}
-                    />}
+                        style={{
+                            marginTop: 10, 
+                            borderWidth: 1, 
+                            borderColor: '#F83F17',
+                            alignSelf: 'center', 
+                            borderRadius: 10,
+                            width: 340,
+                            paddingVertical: 10,
+                            backgroundColor: '#F83F17',
+                        }}
+                    >
+                        <Text style={{color: 'white', alignSelf: 'center'}}>Đăng xuất</Text>
+                    </TouchableOpacity>            
+                    // <Button
+                    //     title="Logout"
+                    //     onPress={() => onLogout()}
+                    // />
+                }
             </View>
             <View style={styles.containerGallery}>
                 <FlatList
@@ -135,10 +184,12 @@ const styles = StyleSheet.create({
         flex: 1
     },
     containerInfo:{
-        margin: 20
+        marginTop: 10,
+        marginHorizontal: 20
     },
     containerGallery:{
-        flex: 1
+        flex: 1,
+        marginTop: 10
     },
     image:{
         flex: 1,

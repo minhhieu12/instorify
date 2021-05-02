@@ -24,6 +24,12 @@ const EmptyScreen = () => {
   return null;
 };
 
+const customTabBarStyle = {
+  activeTintColor: '#0091EA',
+  inactiveTintColor: 'gray',
+  style: {backgroundColor: 'white' },
+}
+
 export class Main extends Component {
   componentDidMount() {
     this.props.fetchUser();
@@ -33,7 +39,7 @@ export class Main extends Component {
   }
   render() {
     return (
-      <Tab.Navigator initialRouteName="Feed" labeled={false}>
+      <Tab.Navigator initialRouteName="Feed" labeled={false} barStyle={{backgroundColor: "#F83F17"}}>
         <Tab.Screen
           name="Feed"
           component={FeedScreen}

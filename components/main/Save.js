@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { View, TextInput, Image, Button } from 'react-native'
+import { View, TextInput, Image, Button, TouchableOpacity, Text } from 'react-native'
 import firestore from '@react-native-firebase/firestore'
 import storage from '@react-native-firebase/storage'
 import auth from '@react-native-firebase/auth'
@@ -58,13 +58,27 @@ export default function Save(props) {
         <View style={{flex: 1}}>
             <Image source={{uri: props.route.params.image}}/>
             <TextInput
+                style={{marginHorizontal: 10}}
+                multiline = {true}
+                numberOfLines={5}
                 placeholder="Bạn đang nghĩ gì?"
                 onChangeText={(caption) => setCaption(caption)}
             />
-            <Button
-                title="Save"
-                onPress={() => uploadImage()}
-            />
+            <TouchableOpacity 
+                    onPress={() => uploadImage()}
+                    style={{
+                        marginTop: 10, 
+                        borderWidth: 1, 
+                        borderColor: '#F83F17',
+                        alignSelf: 'center', 
+                        borderRadius: 10,
+                        paddingHorizontal: 140,
+                        paddingVertical: 10,
+                        backgroundColor: '#F83F17'
+                    }}
+                >
+                    <Text style={{color: 'white'}}>ĐĂNG</Text>
+                </TouchableOpacity>
         </View>
     )
 }
