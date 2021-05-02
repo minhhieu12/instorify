@@ -72,6 +72,10 @@ function Profile(props) {
         .delete()
     }
 
+    const onLogout = () => {
+        auth().signOut();
+    }
+
     if(user === null){
         return(
             <View/>
@@ -101,7 +105,10 @@ function Profile(props) {
                             />
                         )}
                     </View>
-                ) : null}
+                ) : <Button
+                        title="Logout"
+                        onPress={() => onLogout()}
+                    />}
             </View>
             <View style={styles.containerGallery}>
                 <FlatList

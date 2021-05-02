@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native'
 
 import firestore from '@react-native-firebase/firestore'
+import { green100 } from 'react-native-paper/lib/typescript/styles/colors'
 
 export default function Search(props) {
     const [users, setUsers] = useState([])
@@ -32,11 +33,12 @@ export default function Search(props) {
                 numColumns={1}
                 horizontal={false}
                 data={users}
+                style={{marginHorizontal: 10}}
                 renderItem={({item}) => (
                     <TouchableOpacity
                         onPress={() => props.navigation.navigate("Profile", {uid: item.id})}
                     >
-                        <Text>{item.name}</Text>
+                        <Text style={{marginTop: 10, backgroundColor: "#fff"}}>{item.name}</Text>
                     </TouchableOpacity>
                 )}
             />
