@@ -74,7 +74,7 @@ function Comment(props) {
                 horizontal={false}
                 data={comments}
                 renderItem={({item}) => (
-                    <View>
+                    <View style={{}}>
                         {item.user !== undefined ?
                             <Text>
                                 {item.user.name}

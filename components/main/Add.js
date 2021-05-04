@@ -3,14 +3,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import React, { useState ,PureComponent } from 'react';
 import { AppRegistry, StyleSheet, Text, TouchableOpacity, View, Image, ImageBackground } from 'react-native';
 import { RNCamera } from 'react-native-camera';
-import ImagePicker from 'react-native-image-picker'
+import {launchImageLibrary} from 'react-native-image-picker';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function Add({ navigation }) {
   const [camera, setCamera] = useState(null);
   const [image, setImage] = useState(null);
-  const [response, setResponse] = React.useState(null);
+  const [response, setResponse] = useState(null);
 
   const takePicture = async () => {
     if (camera) {
@@ -20,16 +20,16 @@ export default function Add({ navigation }) {
   };
 
   const pickImage = async () => {
-    ImagePicker.launchImageLibrary(
+    launchImageLibrary( 
       {
         mediaType: 'photo',
-        includeBase64: false,
-        maxHeight: 200,
-        maxWidth: 200,
+        //maxHeight: 200,
+        //maxWidth: 200
       },
-      (response) => {
-        setResponse(response);
-      },)
+      response => {
+      console.log('Response = ', response);
+      setImage(response.uri)
+    })
   };
 
   return (
